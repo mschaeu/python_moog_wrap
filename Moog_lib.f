@@ -31,8 +31,7 @@
 !     get it from the .bashrc or .bash_profile (if you're using bash...if
 !     using c or whatever other shell, use those files instead
       call getenv("MOOGPATH", moogpath)
-      moogpath = '/Applications/moog_library_complete/'
-
+      
 !*****What kind of machine are you using?  Possible ones are:
 !     "mac" = Intel-based Apple Mac
 !     "pcl" = a PC or desktop running some standard linux like Redhat
