@@ -1,5 +1,5 @@
 
-      subroutine abfind
+      subroutine abfind(atm_external, aux_data, atm_data)
 !******************************************************************************
 !     This routine derives abundances for individual atomic lines       
 !******************************************************************************
@@ -9,6 +9,12 @@
       include 'Linex.com'
       include 'Mol.com'
       include 'Pstuff.com'
+
+!     added by MS to make the internal python atmosphere work
+      real*8 aux_data(5)
+      real*8 atm_data(100,4)
+      integer*4 atm_external
+
 
   
 !*****read the parameter file
@@ -38,14 +44,23 @@
                       f5out,lscreen)
       endif
 
-!*****open and read the model atmosphere
-      array = 'THE MODEL ATMOSPHERE'
-      nchars = 20
-102   nfmodel = 30
-      lscreen = lscreen + 2
-      call infile ('input  ',nfmodel,'formatted  ',0,nchars, &
-                  fmodel,lscreen)
-      call inmodel
+!*****now, we decide which version of inmodel we call. if atm_external = 1,
+!     then we are reading the atmosphere from an external file. if it's equal
+!     to 0, we read from the internal data
+!     open and read the model atmosphere
+      if (atm_external .eq. 1) then
+        array = 'THE MODEL ATMOSPHERE'
+        nchars = 20
+102     nfmodel = 30
+        lscreen = lscreen + 2
+        call infile ('input  ',nfmodel,'formatted  ',0,nchars, &
+                    fmodel,lscreen)
+
+        call inmodel
+
+      elseif (atm_external .eq. 0) then
+         call inmodel_python(aux_data, atm_data)
+      endif
 
 
 !*****open and read the line list file; get ready for the line calculations

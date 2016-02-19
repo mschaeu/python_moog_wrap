@@ -14,7 +14,8 @@
 
 
 !*****initialization                                                        
-      freq = 2.997925d18/waveop 
+      freq = 2.997925d18/waveop
+
       freqlg = dlog(freq)
       do i = 1,ntau
          hkt = 6.6256d-27/(1.38054d-16*t(i))
@@ -59,7 +60,6 @@
          kaplamsca(i) = sigH(i) + sigH2(i) + sigHe(i) + sigel(i)
          kaplam(i)    = kaplamabs(i) + kaplamsca(i)
       enddo
-
 
 !*****write out the opacities
       if (modprintopt .gt. 1) then

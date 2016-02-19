@@ -1,5 +1,6 @@
 
-      subroutine moogsilent(driver_version, abfind_ret, synth_ret)
+      subroutine moogsilent(driver_version, abfind_ret, synth_ret, atm_external, &
+                            aux_data, atm_data)
 !******************************************************************************
 !     This is the main driver for the non-interactive version of MOOG.  
 !     It reads the parameter file and sends MOOG to various controlling 
@@ -13,9 +14,13 @@
       include 'Linex.com'
 
 ! this was added by MS on 02/04/16 to make moog return the correct variables
+      integer*4 atm_external
+      real*8 aux_data(5)
+      real*8 atm_data(100,4)
       integer*4 driver_version
       real*8 abfind_ret(2500,6)
       real*4 synth_ret(500000,8)
+
 
 !$$$$$$$$$$$$$$$$$$$$$$$$ USER SETUP AREA $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 !     in compiling MOOG, here the various machine-specific things are
@@ -48,7 +53,7 @@
 !*****use one of the standard driver routines ("isotop" is obsolete):
       if     (driver_version .eq. 0) then
          control = 'abfind'
-         call abfind
+         call abfind(atm_external, aux_data, atm_data)
 !        now we equate the corresponding arrays
          abfind_ret(:,1) = wave1
          abfind_ret(:,2) = atom1
@@ -61,7 +66,7 @@
          call plotit
       elseif (driver_version .eq. 2) then
          control = 'synth  '
-         call synth
+         call synth(atm_external, aux_data, atm_data)
          synth_ret(:,1) = xobs
          synth_ret(:,2) = yobs
          synth_ret(:,3) = xsyn

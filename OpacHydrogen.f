@@ -63,7 +63,6 @@
 
 
 
-
       subroutine opacHminus
 !******************************************************************************
 !  This routine computes the H- bound-free and free-free opacities.

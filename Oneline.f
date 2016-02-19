@@ -56,7 +56,9 @@
          call taukap
          call cdcalc(2)
          first = 0.4343*cd(1)
+
          d(1) = rinteg(xref,cd,dummy1,ntau,first)
+
          do k=1,30
             if (k .eq. 30) then
                write (*,1010) wave
@@ -72,7 +74,7 @@
                st1 = st1/1.5
             elseif (d2d1 .le. 0.6) then
                st1 = st1/1.2
-            elseif (d2d1.gt.0.60 .and. d2d1.lt.0.80) then
+            elseif (d2d1 .gt. 0.60 .and. d2d1 .lt. 0.80) then
  !              if (imode .ne. 2) write (nf1out,1001) lim1, &
  !                                1000.*width(lim1), storig, st1, k
                exit

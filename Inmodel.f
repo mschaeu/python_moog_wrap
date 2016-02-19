@@ -42,7 +42,6 @@
          stop
       endif
 
-
 !*****EITHER: Read in a model from the output of the experimental new
 !     MARCS code.  This modtype is called "NEWMARCS".  On each line 
 !     the numbers are:
@@ -108,7 +107,7 @@
 !     opacities.  MOOG will need to generate the opacities internally,
 !     using a reference wavelength that it reads in before the model.
       elseif (modtype .eq. 'KURTYPE') then
-         read (nfmodel,*) wavref    
+         read (nfmodel,*) wavref
          do i=1,ntau
             read (nfmodel,*) rhox(i),t(i),pgas(i),ne(i)
          enddo
@@ -382,6 +381,7 @@
          do i=2,ntau
             tauref(i) = tauref(i-1) + tauref(i)
          enddo
+
 !     SPECIAL NEEDS: for NEWMARCS models, to convert kaprefs to our units
       elseif (modtype .eq. 'KUR-PADOVA') then
          do i=1,ntau
