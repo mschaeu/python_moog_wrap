@@ -27,6 +27,10 @@
 !     declared.  First, define the directory where MOOG lives, in order to
 !     be able to pull in auxiliary data files; executing 'make' will
 !     generate a reminder of this
+!     here, instead of having the user change the moogpath variable, we will
+!     get it from the .bashrc or .bash_profile (if you're using bash...if
+!     using c or whatever other shell, use those files instead
+      call getenv("MOOGPATH", moogpath)
       moogpath = '/Applications/moog_library_complete/'
 
 !*****What kind of machine are you using?  Possible ones are:
