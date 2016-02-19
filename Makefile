@@ -9,7 +9,8 @@ SRC    := Abfind.f Abpop.f Batom.f Begin.f Binary.f \
 	Doflux.f Eqlib.f Estim.f Ewfind.f \
 	Ewweighted.f Fakeline.f Finish.f \
 	Gammabark.f Getasci.f Getcount.f Getnum.f Getsyns.f \
-	Gridplo.f Gridsyn.f Infile.f Inlines.f Inmodel.f Invert.f \
+	Gridplo.f Gridsyn.f Infile.f Inlines.f Inmodel.f \
+	Inmodel_python.f Invert.f \
 	Jexpint.f Lineinfo.f Lineabund.f Linlimit.f \
 	Minimax.f Molquery.f Moog_lib.f Mydriver.f \
 	Nansi.f Nearly.f Number.f Obshead.f\
